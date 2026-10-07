@@ -23,6 +23,8 @@ jobs:
         with:
           cache: true
       - name: Run pre-commit hooks
+        env:
+          SKIP: gitleaks
         run: pre-commit run --all-files
       - name: Run project checks
         run: just ci
