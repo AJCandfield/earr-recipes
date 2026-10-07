@@ -13,22 +13,20 @@ repos:
       - id: end-of-file-fixer
       - id: mixed-line-ending
       - id: trailing-whitespace
+  - repo: https://github.com/rhysd/actionlint
+    rev: 914e7df21a07ef503a81201c76d2b11c789d3fca
+    hooks:
+      - id: actionlint-system
+        pass_filenames: false
+  - repo: https://github.com/hadolint/hadolint
+    rev: 2eece55955ced00200be9729e9728cb7dacca505
+    hooks:
+      - id: hadolint
+        files: ^Dockerfile$
   - repo: local
     hooks:
       - id: gofmt
         name: gofmt
-        entry: mise exec -- gofmt -w
+        entry: gofmt -w
         language: system
         types: [go]
-      - id: actionlint
-        name: actionlint
-        entry: mise exec -- actionlint
-        language: system
-        files: ^\.github/workflows/.*\.ya?ml$
-        pass_filenames: false
-      - id: hadolint
-        name: hadolint
-        entry: mise exec -- hadolint Dockerfile
-        language: system
-        files: (^|/)Dockerfile$
-        pass_filenames: false
