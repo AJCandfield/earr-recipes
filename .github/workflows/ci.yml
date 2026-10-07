@@ -30,7 +30,7 @@ jobs:
         run: pre-commit run --all-files
       - name: Run project checks
         timeout-minutes: 3
-        run: just ci
+        run: just check
 
   container:
     runs-on: ubuntu-latest
