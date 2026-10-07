@@ -32,7 +32,18 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069
+      # Pull requests restore the shared main cache without updating it.
       - name: Build container image
+        if: github.ref != 'refs/heads/main'
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc
+        with:
+          context: .
+          push: false
+          tags: earr-recipes:ci
+          cache-from: type=gha,scope=earr-recipes-image
+      # Main builds refresh the shared cache for future runs.
+      - name: Build and cache container image
+        if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc
         with:
           context: .

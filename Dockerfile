@@ -3,7 +3,8 @@ FROM golang:1.27.1-bookworm@sha256:8d48e12ec56735e9358640898b9d9b9fcca110612ed8a
 WORKDIR /src
 COPY go.mod ./
 RUN go mod download
-COPY . .
+COPY internal/ ./internal/
+COPY cmd/ ./cmd/
 RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags="-s -w" -o /out/earr-server ./cmd/server \
     && mkdir -p /out/data \
     && chown 65532:65532 /out/data
