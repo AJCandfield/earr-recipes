@@ -40,14 +40,15 @@ Copy `.env.example` to `.env` when local runtime configuration is introduced.
 ## Common commands
 
 ```sh
-just fmt
+go fmt ./...
+go test ./...
+go run ./cmd/server
+docker build --tag earr-recipes:local .
 just check
-just docker-build
-just dev
 pre-commit run --all-files
 ```
 
-`just check` runs formatting verification, static analysis, tests, vulnerability analysis, migration validation, generated SQL checks, configuration linters, and a Go build.
+`just check` runs tests, static analysis, vulnerability analysis, and vendored asset integrity checks. Run `sqlc generate` after adding or changing database queries.
 
 ## Layout
 
