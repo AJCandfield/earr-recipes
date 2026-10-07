@@ -1,0 +1,12 @@
+.git
+.github
+.env
+.env.*
+.mise.toml
+.pre-commit-config.yaml
+Dockerfile
+docs
+bin
+coverage.out
+data
+tmp

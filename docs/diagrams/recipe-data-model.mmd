@@ -1,0 +1,54 @@
+classDiagram
+    direction TB
+    class Recipe {
+        +int id
+        +string title
+        +string slug
+        +string description
+    }
+    class Version {
+        +int id
+        +int recipe_id
+        +string kind
+        +bool is_default
+        +int base_servings
+        +int preparation_minutes
+        +string notes
+    }
+    class IngredientLine {
+        +int id
+        +int version_id
+        +int position
+        +string name
+        +decimal display_quantity
+        +string display_unit
+        +decimal nutrition_weight_g
+        +decimal kcal_per_100g
+        +decimal protein_g_per_100g
+        +decimal carbohydrate_g_per_100g
+        +decimal fat_g_per_100g
+        +bool optional
+        +bool included_by_default
+        +string note
+    }
+    class Step {
+        +int id
+        +int version_id
+        +int position
+        +string instruction
+        +string tip
+    }
+    class Tag {
+        +int id
+        +string name
+    }
+    class RecipeTag {
+        +int recipe_id
+        +int tag_id
+    }
+
+    Recipe "1" --> "1..*" Version : has
+    Version "1" --> "0..*" IngredientLine : uses
+    Version "1" --> "0..*" Step : contains
+    Recipe "1" --> "0..*" RecipeTag : tagged by
+    Tag "1" --> "0..*" RecipeTag : assigned through

@@ -1,0 +1,13 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.mise.local.toml
+*.db
+*.db-shm
+*.db-wal
+/bin/
+/coverage.out
+/data/
+/tmp/
+/vendor/
