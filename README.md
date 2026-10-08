@@ -2,10 +2,6 @@
 
 EARR is a personal recipe collection for meals designed around an anti-reflux diet. Each recipe defaults to its reflux-conscious version and may later include a traditional version. The site will also publish high-level educational material about reflux, ingredients, and food choices.
 
-The project is currently a tooling and architecture scaffold. It does not yet implement recipe or content behavior.
-
-The material in this repository is informational and is not medical advice. Dietary triggers vary between individuals; readers should seek guidance from a qualified healthcare professional.
-
 ## Architecture
 
 - Go modular monolith with server-rendered `html/template` pages
@@ -34,48 +30,6 @@ mise trust
 mise install
 pre-commit install
 ```
-
-Copy `.env.example` to `.env` when local runtime configuration is introduced.
-
-## Common commands
-
-```sh
-go fmt ./...
-go test ./...
-go run ./cmd/server
-docker build --tag earr-recipes:local .
-just check
-pre-commit run --all-files
-```
-
-`just check` runs tests, static analysis, vulnerability analysis, and vendored asset integrity checks. Run `sqlc generate` after adding or changing database queries.
-
-## Layout
-
-```text
-cmd/server/             Application entry point
-content/                Educational Markdown content
-db/migrations/          Ordered Goose SQL migrations
-db/queries/             SQL queries consumed by sqlc
-docs/adr/               Architecture decision records
-docs/diagrams/          Domain diagrams
-internal/config/        Runtime configuration
-internal/content/       Educational content loading
-internal/nutrition/     Nutrition calculations
-internal/recipe/        Recipe domain rules
-internal/store/         Persistence adapters and generated queries
-internal/web/           HTTP routing and handlers
-web/static/             CSS and vendored browser assets
-web/templates/          Go HTML templates
-```
-
-## Data constraints
-
-- Weight and volume are metric, except for small non-influential measures such as teaspoons and tablespoons.
-- Quantities and nutrition values must use fixed-point representations rather than binary floating-point arithmetic.
-- Calories and macronutrients are derived from ingredient-level nutrition data.
-- Each recipe has one default version; the anti-reflux version is the initial default.
-- Ingredient ordering, step ordering, optional ingredients, and tags are explicit domain concepts.
 
 ## License
 
