@@ -1,6 +1,6 @@
 [tools]
 go = "1.27.1"
-just = "1.58.0"
+just = "1.59.0"
 golangci-lint = "2.14.0"
 sqlc = "1.31.1"
 "aqua:pressly/goose" = "3.28.0"
