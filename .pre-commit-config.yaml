@@ -23,7 +23,7 @@ repos:
       - id: actionlint-system
         pass_filenames: false
   - repo: https://github.com/hadolint/hadolint
-    rev: 2eece55955ced00200be9729e9728cb7dacca505
+    rev: v2.15.1
     hooks:
       - id: hadolint
         files: ^Dockerfile$
